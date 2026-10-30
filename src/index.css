@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        @apply antialiased scroll-smooth;
+        /* Default background to gray-50 to match light theme */
+        background-color: #f9fafb;
+        overflow-x: hidden;
+        /* Remove overscroll bounce to eliminate white flashes on mobile/mac */
+        overscroll-behavior-y: none;
+    }
+
+    html.dark {
+        /* Set background to black for dark theme overscroll */
+        background-color: #000000;
+    }
+
+    body {
+        @apply transition-colors duration-300;
+        min-height: 100vh;
+        margin: 0;
+        background-color: inherit;
+    }
+}
+
+/* Custom Scrollbar Styles for a premium look */
+@layer utilities {
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        @apply bg-transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        @apply bg-gray-200 dark:bg-gray-800 rounded-full hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors;
+    }
+}
+
+/* Global scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-gray-200 dark:bg-gray-800 rounded-full hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors;
+}
+
+/* Specific sync for the Dashboard page which uses a gray-900 gradient in dark mode */
+html.dark:has(.bg-gradient-to-br) {
+    background-color: #111827;
+}
